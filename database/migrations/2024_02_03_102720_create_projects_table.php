@@ -11,14 +11,14 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->longText('description')->nullable();
             $table->timestamp('due_date')->nullable();
             $table->string('status');
             $table->string('image_path')->nullable();
-            $table->foreignId('created_by')->constrained('users');
-            $table->foreignId('updated_by')->constrained('users');
+            $table->foreignUuid('created_by')->constrained('users');
+            $table->foreignUuid('updated_by')->constrained('users');
             $table->timestamps();
         });
     }
